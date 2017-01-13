@@ -114,11 +114,16 @@ extern NSString *const kSAMKeychainWhereKey;
  @param password The password to store in the Keychain.
 
  @param serviceName The service for which to set the corresponding password.
-
+#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+ @param accessGroup The access group to which to write.
+#endif
  @param account The account for which to set the corresponding password.
-
+ 
  @return Returns `YES` on success, or `NO` on failure.
  */
+#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account;
+#endif
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
 
