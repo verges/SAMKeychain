@@ -71,21 +71,26 @@ extern NSString *const kSAMKeychainWhereKey;
  password for the given parameters.
 
  @param serviceName The service for which to return the corresponding password.
-
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+ @param accessGroup The access group to which to write.
+//#endif
  @param account The account for which to return the corresponding password.
 
  @return Returns a string containing the password for a given account and service, or `nil` if the Keychain doesn't
  have a password for the given parameters.
  */
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
++ (nullable NSString *)passwordForService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account;
+//#endif
 + (nullable NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account;
-+ (nullable NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
++ (nullable NSString *)passwordForService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
 
 /**
  Returns a nsdata containing the password for a given account and service, or `nil` if the Keychain doesn't have a
  password for the given parameters.
 
  @param serviceName The service for which to return the corresponding password.
-
+ 
  @param account The account for which to return the corresponding password.
 
  @return Returns a nsdata containing the password for a given account and service, or `nil` if the Keychain doesn't
@@ -99,13 +104,18 @@ extern NSString *const kSAMKeychainWhereKey;
  Deletes a password from the Keychain.
 
  @param serviceName The service for which to delete the corresponding password.
-
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+ @param accessGroup The access group to which to write.
+//#endif
  @param account The account for which to delete the corresponding password.
 
  @return Returns `YES` on success, or `NO` on failure.
  */
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
++ (BOOL)deletePasswordForService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account;
+//#endif
 + (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account;
-+ (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
++ (BOOL)deletePasswordForService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
 
 
 /**
@@ -121,9 +131,9 @@ extern NSString *const kSAMKeychainWhereKey;
  
  @return Returns `YES` on success, or `NO` on failure.
  */
-#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName accessGroup:(NSString *)accessGroup account:(NSString *)account;
-#endif
+//#endif
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
 

@@ -21,10 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 	#define SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE 1
 #endif
 
-#if __IPHONE_3_0 || __MAC_10_9
-	// Keychain access group available at compile time
-	#define SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE 1
-#endif
+//#if __IPHONE_3_0 || __MAC_10_9
+//	// Keychain access group available at compile time
+//	#define SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE 1
+//#endif
 
 #ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
 typedef NS_ENUM(NSUInteger, SAMKeychainQuerySynchronizationMode) {
@@ -48,15 +48,15 @@ typedef NS_ENUM(NSUInteger, SAMKeychainQuerySynchronizationMode) {
 /** kSecAttrLabel */
 @property (nonatomic, copy, nullable) NSString *label;
 
-#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
 /** kSecAttrAccessGroup (only used on iOS) */
 @property (nonatomic, copy, nullable) NSString *accessGroup;
-#endif
+//#endif
 
-#ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
+//#ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
 /** kSecAttrSynchronizable */
 @property (nonatomic) SAMKeychainQuerySynchronizationMode synchronizationMode;
-#endif
+//#endif
 
 /** Root storage for password information */
 @property (nonatomic, copy, nullable) NSData *passwordData;

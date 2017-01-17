@@ -16,9 +16,9 @@
 @synthesize label = _label;
 @synthesize passwordData = _passwordData;
 
-#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
 @synthesize accessGroup = _accessGroup;
-#endif
+//#endif
 
 #ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
 @synthesize synchronizationMode = _synchronizationMode;
@@ -212,13 +212,13 @@
 		[dictionary setObject:self.account forKey:(__bridge id)kSecAttrAccount];
 	}
 
-#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
+//#ifdef SAMKEYCHAIN_ACCESS_GROUP_AVAILABLE
 #if !TARGET_IPHONE_SIMULATOR
 	if (self.accessGroup) {
 		[dictionary setObject:self.accessGroup forKey:(__bridge id)kSecAttrAccessGroup];
 	}
 #endif
-#endif
+//#endif
 
 #ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
 	if ([[self class] isSynchronizationAvailable]) {
